@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  List<String> products = ['Food Tester '];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,17 +36,28 @@ class MyApp extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.all(10.0),
-              child:
-                  ElevatedButton(onPressed: () {}, child: Text("Add Product")),
+              child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      products.add('Advanced Food');
+                    });
+                  },
+                  child: Text("Add Product")),
             ),
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset('assets/test.jpg'),
-                  Text("Test")
-                ],
-              ),
-            ),
+            Column(
+              children: products
+                  .map(
+                    (e) => Card(
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('assets/test.jpg'),
+                          Text(e)
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList(),
+            )
           ],
         ),
       ),
