@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './product_manger.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,36 +32,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('EastList')),
-        body: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      products.add('Advanced Food');
-                    });
-                  },
-                  child: Text("Add Product")),
-            ),
-            Column(
-              children: products
-                  .map(
-                    (e) => Card(
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset('assets/test.jpg'),
-                          Text(e)
-                        ],
-                      ),
-                    ),
-                  )
-                  .toList(),
-            )
-          ],
-        ),
-      ),
+          appBar: AppBar(title: Text('EastList')), body: ProductManager()),
     );
   }
 }
